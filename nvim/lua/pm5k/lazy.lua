@@ -152,7 +152,12 @@ local plugins = {
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
+        -- TODO: Configure this !!!
     },
+    {
+        "christoomey/vim-tmux-navigator",
+        lazy = false,
+    }
 }
 
 local opts = {

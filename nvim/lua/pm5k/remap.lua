@@ -122,7 +122,7 @@ vim.keymap.set("n", "<leader>cs", "<cmd>:Cheatsheet<CR>")
 -- `nvim somefile` or some other way. This is so that if I ever wanna just do `nvim`
 -- to quickly dick around or have a bind to swap highlight languages on the fly - I can.
 -- Note: this uses the `langlist.lua` import and populates the language selection accordingly.
-vim.keymap.set("n", "<C-L>", function()
+vim.keymap.set("n", "<leader>ll", function()
     vim.ui.select(langs, {
         prompt = "Select language for syntax highlighting:",
         format_item = function(item)
