@@ -82,14 +82,16 @@ eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init - --path)"
  
 alias cl=clear
-alias zshconf="nvim $HOME/.zshrc"
-alias zshrld="omz reload"
-alias ohmyzsh="nvim $HOME/.oh-my-zsh"
-alias viminit="cd $HOME/.config/nvim/ && nvim ."
-alias projects="cd $HOME/Projects/ && nvim ."
+alias n=nvim
 alias poetsh='source "$( poetry env list --full-path | grep Activated | cut -d' ' -f1 )/bin/activate"'
-alias starconf="nvim $STARSHIP_CONFIG" 
-alias tmuxconf="nvim $HOME/.config/tmux/tmux.conf"
+alias zshrld="omz reload"
+
+alias zshconf="n $HOME/.zshrc"
+alias ohmyzsh="n $HOME/.oh-my-zsh"
+alias viminit="cd $HOME/.config/nvim/ && n ."
+alias projects="cd $HOME/Projects/ && n ."
+alias starconf="n $STARSHIP_CONFIG" 
+alias tmuxconf="n $HOME/.config/tmux/tmux.conf"
 
 #----------------#
 #   NVm Init     #
