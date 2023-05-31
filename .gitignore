@@ -7,3 +7,4 @@
 /truffle-nodejs
 /yay
 /tmux/plugins
+.zcompdump*
