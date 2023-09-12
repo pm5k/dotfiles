@@ -1,21 +1,21 @@
-# Start tmux when zsh starts and attach to the default session
-# or create it if it doesn't exist.
-DEFAULT_SESSION="ZSH Autosession"
-
-# 1. First you check if a tmux session exists with a given name.
-tmux has-session -t=$DEFAULT_SESSION 2> /dev/null
-
-# 2. Create the session if it doesn't exists.
-if [[ $? -ne 0 ]]; then
-  TMUX='' tmux new-session -d -s "$DEFAULT_SESSION"
-fi
-
-# 3. Attach if outside of tmux, switch if you're in tmux.
-if [[ -z "$TMUX" ]]; then
-  tmux attach -t "$DEFAULT_SESSION"
-else
-  tmux switch-client -t "$DEFAULT_SESSION"
-fi
+# # Start tmux when zsh starts and attach to the default session
+# # or create it if it doesn't exist.
+# DEFAULT_SESSION="ZSH Autosession"
+#
+# # 1. First you check if a tmux session exists with a given name.
+# tmux has-session -t=$DEFAULT_SESSION 2> /dev/null
+#
+# # 2. Create the session if it doesn't exists.
+# if [[ $? -ne 0 ]]; then
+#   TMUX='' tmux new-session -d -s "$DEFAULT_SESSION"
+# fi
+#
+# # 3. Attach if outside of tmux, switch if you're in tmux.
+# if [[ -z "$TMUX" ]]; then
+#   tmux attach -t "$DEFAULT_SESSION"
+# else
+#   tmux switch-client -t "$DEFAULT_SESSION"
+# fi
 
 # Misc options before setting up oh-my-zsh
 ZSH_DISABLE_COMPFIX=true
@@ -24,7 +24,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt autocd extendedglob
 bindkey -e
-zstyle :compinstall filename '$HOME/.zshrc'
+zstyle :compinstall filename '$HOME/.config/.zshrc'
 autoload -Uz compinit
 compinit
 
@@ -86,7 +86,7 @@ alias n=nvim
 alias poetsh='source "$( poetry env list --full-path | grep Activated | cut -d' ' -f1 )/bin/activate"'
 alias zshrld="omz reload"
 
-alias zshconf="n $HOME/.zshrc"
+alias zshconf="n $HOME/.config/.zshrc"
 alias ohmyzsh="n $HOME/.oh-my-zsh"
 alias viminit="cd $HOME/.config/nvim/ && n ."
 alias projects="cd $HOME/Projects/ && n ."
