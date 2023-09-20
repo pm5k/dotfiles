@@ -45,10 +45,12 @@ export PATH="$PATH:/usr/local/go/bin"
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 # Don't load NVM right away on zsh init..
 export NVM_LAZY_LOAD=true
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-export DOCKER_BUILDKIT=0
+# export DOCKER_BUILDKIT=0
 
 
 #-------------#

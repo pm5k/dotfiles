@@ -4,8 +4,11 @@ require("nvim-treesitter.configs").setup {
     ensure_installed = langs, -- langs come from `pm5k.langlist`
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
+    sync_install = false,
+    ignore_install = {},
     highlight = { enable = true },
     indent = { enable = true, disable = { "python" } },
+    modules = {},
     incremental_selection = {
       enable = true,
       keymaps = {

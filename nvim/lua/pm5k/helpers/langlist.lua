@@ -6,10 +6,10 @@ return {
     "markdown",
     "python",
     "rust",
-    "svelte",
+    -- "svelte",
     "terraform",
-    "tsx",
-    "typescript",
+    -- "tsx",
+    -- "typescript",
     "vimdoc",
     "vim"
 }
