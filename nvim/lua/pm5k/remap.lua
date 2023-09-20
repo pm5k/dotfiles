@@ -76,21 +76,21 @@ vim.keymap.set("n", "<leader>s", ":g/<C-R><C-W>/#<CR>", options)
 
 -- Use telescope and fzf to find word under current cursor and
 -- further filter stuff in the input field..
-vim.keymap.set("n", "<leader>gs", function()
-    local cword = vim.fn.expand("<cword>")
-    vim.cmd("/" .. cword)
-    require("telescope.builtin").grep_string({
-        search = cword,
-        search_dirs = { vim.fn.expand("%") }
-    })
-end, options)
+-- vim.keymap.set("n", "<leader>gs", function()
+--     local cword = vim.fn.expand("<cword>")
+--     vim.cmd("/" .. cword)
+--     require("telescope.builtin").grep_string({
+--         search = cword,
+--         search_dirs = { vim.fn.expand("%") }
+--     })
+-- end, options)
 
 -- Search for word under cursor in current file and replace it with
 -- what you type in the input field.
 vim.keymap.set("n", "<leader>sr", ":%s/\\<<C-r><C-w>\\>//g<Left><Left>")
 
 --[[ TERMINAL ]]
-vim.keymap.set("n", "<C-t>", "<cmd>silent !tmux split-window -p 30<CR>")
+-- vim.keymap.set("n", "<C-t>", "<cmd>silent !tmux split-window -p 30<CR>")
 
 
 --[[ MOVEMENT ]]
@@ -105,18 +105,18 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
 -- Move line/selection up
-vim.keymap.set("n", "<M-k>", ":m .-2<CR>")
-vim.keymap.set("v", "<M-k>", ":m -2<CR>gv=gv")
+-- vim.keymap.set("n", "<M-k>", ":m .-2<CR>")
+-- vim.keymap.set("v", "<M-k>", ":m -2<CR>gv=gv")
 
 -- Move line/selection down
-vim.keymap.set("n", "<M-j>", ":m .+1<CR>")
-vim.keymap.set("v", "<M-j>", ":m '>+<CR>gv=gv")
+-- vim.keymap.set("n", "<M-j>", ":m .+1<CR>")
+-- vim.keymap.set("v", "<M-j>", ":m '>+<CR>gv=gv")
 
 
 -- [[ MISC ]]
 
 -- Cheatsheet
-vim.keymap.set("n", "<leader>cs", "<cmd>:Cheatsheet<CR>")
+-- vim.keymap.set("n", "<leader>cs", "<cmd>:Cheatsheet<CR>")
 
 -- Convenience bind to enable syntax highlight on buffers that were not opened as:
 -- `nvim somefile` or some other way. This is so that if I ever wanna just do `nvim`
@@ -129,17 +129,17 @@ vim.keymap.set("n", "<leader>ll", function()
             return item
         end,
     }, function(choice)
-            if (choice) then
-                vim.opt.filetype = choice
-            end
+        if (choice) then
+            vim.opt.filetype = choice
+        end
     end)
 end)
 
 -- Toggle nvim-tree using Space+Tab and focus it.
 -- vim.keymap.set("n", "<leader><Tab>", ":NvimTreeToggle | :NvimTreeFocus <CR>")
 -- NeoTree remaps:
-vim.keymap.set("n", "<leader><Tab>", ":Neotree toggle <CR>")
-vim.keymap.set("n", "<leader>gss", ":Neotree float git_status <CR>")
+-- vim.keymap.set("n", "<leader><Tab>", ":Neotree toggle <CR>")
+-- vim.keymap.set("n", "<leader>gss", ":Neotree float git_status <CR>")
 
 -- Convenience bind for escaping insert mode.
 vim.keymap.set("i", "<C-c>", "<Esc>")
