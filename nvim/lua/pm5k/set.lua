@@ -15,7 +15,6 @@ vim.g.clipboard = {
     },
     cache_enabled = 0,
 }
-vim.o.clipboard = "unnamedplus"
 
 -- Enable mouse mode
 vim.o.mouse = "a"
@@ -47,8 +46,6 @@ vim.o.hlsearch = false
 vim.o.ignorecase = false
 vim.o.smartcase = true
 
-vim.g.python3_host_prog = "~/.pyenv/versions/py3nvim/bin/python"
-
 -- Misc
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
@@ -61,8 +58,5 @@ vim.o.timeoutlen = 300
 vim.opt.colorcolumn = "100"
 vim.o.completeopt = "menuone,noselect"
 vim.opt.splitbelow = true
--- Disable netrw so it doesn't clash with nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 -- Disable welcome message
 vim.o.shortmess = "I"
