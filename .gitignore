@@ -8,4 +8,4 @@
 /yay
 /tmux/plugins
 .zcompdump*
-!scoop
+configstore

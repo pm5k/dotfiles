@@ -1,22 +1,3 @@
-# # Start tmux when zsh starts and attach to the default session
-# # or create it if it doesn't exist.
-# DEFAULT_SESSION="ZSH Autosession"
-#
-# # 1. First you check if a tmux session exists with a given name.
-# tmux has-session -t=$DEFAULT_SESSION 2> /dev/null
-#
-# # 2. Create the session if it doesn't exists.
-# if [[ $? -ne 0 ]]; then
-#   TMUX='' tmux new-session -d -s "$DEFAULT_SESSION"
-# fi
-#
-# # 3. Attach if outside of tmux, switch if you're in tmux.
-# if [[ -z "$TMUX" ]]; then
-#   tmux attach -t "$DEFAULT_SESSION"
-# else
-#   tmux switch-client -t "$DEFAULT_SESSION"
-# fi
-
 # Misc options before setting up oh-my-zsh
 ZSH_DISABLE_COMPFIX=true
 HISTFILE=$HOME/.histfile
@@ -86,7 +67,7 @@ source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 eval "$(pyenv init - --path)"
- 
+
 alias cl=clear
 alias n=nvim
 alias poetsh='source "$( poetry env list --full-path | grep Activated | cut -d' ' -f1 )/bin/activate"'
@@ -96,9 +77,9 @@ alias zshconf="n $HOME/.config/.zshrc"
 alias ohmyzsh="n $HOME/.oh-my-zsh"
 alias viminit="cd $HOME/.config/nvim/ && n ."
 alias projects="cd $HOME/Projects/ && n ."
-alias starconf="n $STARSHIP_CONFIG" 
+alias starconf="n $STARSHIP_CONFIG"
 alias tmuxconf="n $HOME/.config/tmux/tmux.conf"
-alias optiplex="ssh -i ~/.ssh/optiplex tom@192.168.1.246"
+alias optiplex="ssh -i ~/.ssh/optiplex $($USER)@192.168.1.246"
 
 # Tmux aliases
 alias tmnew="tmux new -s"

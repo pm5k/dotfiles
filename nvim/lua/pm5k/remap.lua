@@ -1,15 +1,14 @@
+-- Import our langlist which we can easily edit to add/remove languages
 local langs = require("pm5k.helpers.langlist")
--- [[ Basic Keymaps ]]
 
+
+-- [[ Basic Keymaps ]]
 -- Disable arrows to prevent "cheating" when learning.
 vim.keymap.set({ "v", "i", "s", "o", "n" }, "<Left>", "<Nop>")
 vim.keymap.set({ "v", "i", "s", "o", "n" }, "<Right>", "<Nop>")
 vim.keymap.set({ "v", "i", "s", "o", "n" }, "<Up>", "<Nop>")
 vim.keymap.set({ "v", "i", "s", "o", "n" }, "<Down>", "<Nop>")
-
 vim.keymap.set("n", "Q", "<nop>")
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
@@ -28,6 +27,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -38,8 +38,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     group = highlight_group,
     pattern = '*',
 })
---[[ MOVEMENT ]]
 
+
+--[[ MOVEMENT ]]
 -- Keep search terms in the middle of screen when using
 -- / or ? to search and then "n" or "N" to go to next/previous match.
 vim.keymap.set("n", "n", "nzzzv")
@@ -48,6 +49,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- Move half a screen up/down and keep cursor in the middle
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
+
 
 --[[ MISC ]]
 -- Convenience bind for escaping insert mode.
