@@ -51,6 +51,10 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export NVM_LAZY_LOAD=true
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # export DOCKER_BUILDKIT=0
+# This prevents errors with downloading
+# huge files using package managers inside of wsl.
+# It can eat as much space as it wants
+export TMPDIR="$HOME/.tmp"
 
 
 #-------------#
@@ -94,6 +98,14 @@ alias viminit="cd $HOME/.config/nvim/ && n ."
 alias projects="cd $HOME/Projects/ && n ."
 alias starconf="n $STARSHIP_CONFIG" 
 alias tmuxconf="n $HOME/.config/tmux/tmux.conf"
+alias optiplex="ssh -i ~/.ssh/optiplex tom@192.168.1.246"
+
+# Tmux aliases
+alias tmnew="tmux new -s"
+alias tmkill="tmux kill-session -t"
+alias tmatt="tmux attach -t"
+alias tmls="tmux ls"
+alias tmkall="tmux kill-session -a"
 
 #----------------#
 #   NVm Init     #
