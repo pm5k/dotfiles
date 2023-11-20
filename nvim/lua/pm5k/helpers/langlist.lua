@@ -1,16 +1,18 @@
 return {
-    "c",
-    "cpp",
-    "go",
+    -- "c",
+    -- "cpp",
+    -- "go",
     "lua",
+    "html",
+    "scss",
+    "css",
     "markdown",
     "python",
     "rust",
-    -- "svelte",
-    "terraform",
+    "svelte",
+    -- "terraform",
     -- "tsx",
-    -- "typescript",
+    "typescript",
     "vimdoc",
     "vim"
 }
-

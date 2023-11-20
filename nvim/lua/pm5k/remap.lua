@@ -1,14 +1,5 @@
 local langs = require("pm5k.helpers.langlist")
-
-
---[[ PRE ]]
-
--- Remap leader to space at the very start.
--- This gets loaded before any other module,
--- which means that leader should work properly..
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
+-- [[ Basic Keymaps ]]
 
 -- Disable arrows to prevent "cheating" when learning.
 vim.keymap.set({ "v", "i", "s", "o", "n" }, "<Left>", "<Nop>")
@@ -16,50 +7,37 @@ vim.keymap.set({ "v", "i", "s", "o", "n" }, "<Right>", "<Nop>")
 vim.keymap.set({ "v", "i", "s", "o", "n" }, "<Up>", "<Nop>")
 vim.keymap.set({ "v", "i", "s", "o", "n" }, "<Down>", "<Nop>")
 
--- Remap for dealing with word wrap
-vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", {
-    expr = true,
-    silent = true
-})
-vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", {
-    expr = true,
-    silent = true
-})
-
---[[ CLIPBOARD ]]
-
--- Highlight on yank. See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function() vim.highlight.on_yank() end,
-    group = highlight_group,
-    pattern = "*",
-})
-vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- Primagen: greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
-
 -- Primagen: next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- [[ GREP, SEARCH & REPLACE ]]
-
-local options = { desc = "Global cword search using grep.", remap = false }
-
--- Search for word under the cursor position in current file, output a list of matches.
-vim.keymap.set("n", "<leader>s", ":g/<C-R><C-W>/#<CR>", options)
-
--- Search for word under cursor in current file and replace it with
--- what you type in the input field.
-vim.keymap.set("n", "<leader>sr", ":%s/\\<<C-r><C-w>\\>/")
-
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
+})
 --[[ MOVEMENT ]]
 
 -- Keep search terms in the middle of screen when using
@@ -71,22 +49,24 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
--- Move line/selection up
--- vim.keymap.set("n", "<M-k>", ":m .-2<CR>")
--- vim.keymap.set("v", "<M-k>", ":m -2<CR>gv=gv")
+--[[ MISC ]]
+-- Convenience bind for escaping insert mode.
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- Move line/selection down
--- vim.keymap.set("n", "<M-j>", ":m .+1<CR>")
--- vim.keymap.set("v", "<M-j>", ":m '>+<CR>gv=gv")
-
-
--- [[ MISC ]]
-
--- Convenience bind to enable syntax highlight on buffers that were not opened as:
--- `nvim somefile` or some other way. This is so that if I ever wanna just do `nvim`
--- to quickly dick around or have a bind to swap highlight languages on the fly - I can.
--- Note: this uses the `langlist.lua` import and populates the language selection accordingly.
+-- Only active if not inside VSCode's nvim plugin to avoid conflicts with VSC binds.
 if not vim.g.vscode then
+    -- Move line/selection up
+    vim.keymap.set("n", "<M-k>", ":m .-2<CR>")
+    vim.keymap.set("v", "<M-k>", ":m -2<CR>gv=gv")
+
+    -- Move line/selection down
+    vim.keymap.set("n", "<M-j>", ":m .+1<CR>")
+    vim.keymap.set("v", "<M-j>", ":m '>+<CR>gv=gv")
+
+    -- Convenience bind to enable syntax highlight on buffers that were not opened as:
+    -- `nvim somefile` or some other way. This is so that if I ever wanna just do `nvim`
+    -- to quickly dick around or have a bind to swap highlight languages on the fly - I can.
+    -- Note: this uses the `langlist.lua` import and populates the language selection accordingly.
     vim.keymap.set("n", "<leader>ll", function()
         vim.ui.select(langs, {
             prompt = "Select language for syntax highlighting:",
@@ -101,5 +81,5 @@ if not vim.g.vscode then
     end)
 end
 
--- Convenience bind for escaping insert mode.
-vim.keymap.set("i", "<C-c>", "<Esc>")
+-- <Leader>+Tab toggles OIL
+vim.keymap.set("n", "<leader><Tab>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
