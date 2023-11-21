@@ -231,7 +231,12 @@ require('lazy').setup({
   {
     'stevearc/conform.nvim',
     opts = {
+      format_on_save = {
+        lsp_fallback = true,
+      },
       formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "ruff" },
         javascript = { { "prettierd", "prettier" } },
         typescript = { { "prettierd", "prettier" } },
       },
@@ -249,6 +254,25 @@ require('telescope').setup {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
       },
+    },
+  },
+  pickers = {
+    live_grep = {
+      attach_mappings = function(_, map)
+        map("i", "<C-r>", function(buffer)
+          local search = require("telescope.actions.state").get_current_line()
+
+          require("telescope.actions").send_to_qflist(buffer)
+
+          vim.ui.input({ prompt = "Replace with: " }, function(replace)
+            if replace ~= nil and #replace > 0 then
+              vim.cmd("cdo s/" .. search .. "/" .. replace .. "/gc")
+            end
+          end)
+        end)
+
+        return true
+      end,
     },
   },
 }
@@ -573,3 +597,4 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
