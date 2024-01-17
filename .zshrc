@@ -79,7 +79,7 @@ alias viminit="cd $HOME/.config/nvim/ && n ."
 alias projects="cd $HOME/Projects/ && n ."
 alias starconf="n $STARSHIP_CONFIG"
 alias tmuxconf="n $HOME/.config/tmux/tmux.conf"
-alias optiplex="ssh -i ~/.ssh/optiplex $($USER)@192.168.1.246"
+alias optiplex="ssh -i ~/.ssh/optiplex $USER@192.168.1.246"
 
 # Tmux aliases
 alias tmnew="tmux new -s"

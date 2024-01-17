@@ -83,3 +83,8 @@ end
 
 -- <Leader>+Tab toggles OIL
 vim.keymap.set("n", "<leader><Tab>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Telescope
+-- TODO search for folke/todo-comments
+vim.keymap.set("n", "<leader>t", "<CMD>TodoTelescope<CR>", { desc = "Search project TODO using Telescope" })
+

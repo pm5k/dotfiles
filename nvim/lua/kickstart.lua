@@ -19,7 +19,8 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
-
+-- This is needed for CONFORM to use
+local slow_format_filetypes = {}
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
@@ -231,9 +232,29 @@ require('lazy').setup({
   {
     'stevearc/conform.nvim',
     opts = {
-      format_on_save = {
-        lsp_fallback = true,
-      },
+      format_on_save = function(bufnr)
+        if slow_format_filetypes[vim.bo[bufnr].filetype] then
+          return
+        end
+        local function on_format(err)
+          if err and err:match("timeout$") then
+            slow_format_filetypes[vim.bo[bufnr].filetype] = true
+          end
+        end
+
+        return { timeout_ms = 200, lsp_fallback = true }, on_format
+      end,
+
+      format_after_save = function(bufnr)
+        if not slow_format_filetypes[vim.bo[bufnr].filetype] then
+          return
+        end
+        return { lsp_fallback = true }
+      end,
+      -- format_on_save = {
+      --   lsp_fallback = true,
+      --   timeout_ms = 500,
+      -- },
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff" },
@@ -242,6 +263,16 @@ require('lazy').setup({
       },
     },
   },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+  { "NoahTheDuke/vim-just" },
 }, {})
 
 
@@ -256,6 +287,9 @@ require('telescope').setup {
       },
     },
   },
+  -- [[ Thanks to AlphaKeks:
+  --    https://github.com/TheBallsUp/balls/blob/87dfe994390303b0320dd20c19c5f4b3cd9c71e6/telescope/global_search_and_replace.lua
+  -- ]]
   pickers = {
     live_grep = {
       attach_mappings = function(_, map)
