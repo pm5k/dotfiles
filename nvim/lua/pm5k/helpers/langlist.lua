@@ -14,8 +14,7 @@ return {
     "vim",
     "vimdoc",
     -- "c",
-    -- "go",
+    "go",
     -- "terraform",
     -- "tsx",
 }
-

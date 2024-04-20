@@ -273,6 +273,7 @@ require('lazy').setup({
     }
   },
   { "NoahTheDuke/vim-just" },
+  { "terrastruct/d2-vim" },
 }, {})
 
 
@@ -440,6 +441,17 @@ vim.defer_fn(function()
   }
 end, 0)
 
+-- Setup D2 Parser... No clue where else to put this...
+-- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+-- parser_config.d2 = {
+--   install_info = {
+--     url = 'https://github.com/pleshevskiy/tree-sitter-d2',
+--     revision = 'main',
+--     files = { 'src/parser.c', 'src/scanner.cc' },
+--   },
+--   filetype = 'd2',
+-- };
+--
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
@@ -549,6 +561,7 @@ local servers = {
 
   lua_ls = {
     Lua = {
+      diagnostics = { disable = { 'missing-fields' } },
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
       globals = { 'vim' },
@@ -631,4 +644,3 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
