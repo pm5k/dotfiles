@@ -35,7 +35,7 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # This prevents errors with downloading
 # huge files using package managers inside of wsl.
 # It can eat as much space as it wants
-export TMPDIR="$HOME/.tmp"
+# export TMPDIR="$HOME/.tmp"
 
 
 #-------------#
