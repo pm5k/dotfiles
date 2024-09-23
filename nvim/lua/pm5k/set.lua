@@ -70,3 +70,6 @@ vim.opt.colorcolumn = "100"
 vim.opt.splitbelow = true
 -- Disable welcome message
 vim.o.shortmess = "I"
+-- Set indents
+vim.opt_local.shiftwidth = 4
+vim.opt_local.tabstop = 4

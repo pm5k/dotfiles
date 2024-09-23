@@ -88,3 +88,5 @@ vim.keymap.set("n", "<leader><Tab>", "<CMD>Oil<CR>", { desc = "Open parent direc
 -- TODO search for folke/todo-comments
 vim.keymap.set("n", "<leader>t", "<CMD>TodoTelescope<CR>", { desc = "Search project TODO using Telescope" })
 
+-- LSP Hover Info
+vim.keymap.set("n", "<leader>hi", "<CMD>lua vim.lsp.buf.hover()<CR>", { desc = "Hover LSP Info/Definition Info" })
