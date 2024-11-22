@@ -21,16 +21,13 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.pyenv:$PATH"
 export PATH="$PATH:/usr/local/go/bin"
-export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 # Don't load NVM right away on zsh init..
 export NVM_LAZY_LOAD=true
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 # export DOCKER_BUILDKIT=0
 # This prevents errors with downloading
 # huge files using package managers inside of wsl.
@@ -49,7 +46,6 @@ plugins=(
 )
 plugins+=(git)
 plugins+=(zsh-nvm)
-plugins+=(poetry)
 
 
 #----------#
@@ -64,10 +60,6 @@ source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #----------------#
 #   EVAL/ALIAS   #
 #----------------#
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(pyenv init - --path)"
-
 alias cl=clear
 alias n=nvim
 alias poetsh='source "$( poetry env list --full-path | grep Activated | cut -d' ' -f1 )/bin/activate"'
