@@ -202,6 +202,13 @@ if not vim.g.vscode then
   end)
 end
 
+vim.api.nvim_create_user_command(
+  'DBUIEditConnectionsJSON', -- Command name
+  function()
+    vim.cmd 'edit ~/.local/share/db_ui/connections.json' -- Replace with your file path
+  end,
+  { nargs = 0 } -- No arguments required
+)
 -- TODO search for folke/todo-comments
 vim.keymap.set('n', '<leader>t', '<CMD>TodoTelescope<CR>', { desc = 'Search project TODO using Telescope' })
 
