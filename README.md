@@ -1,55 +1,124 @@
-# PM5K's dotfiles
+# PM5K's Dotfiles Configuration
 
-## Description
+## 📁 Directory Structure
 
-My collection of configuration files.
-Includes things like:
-
-- neovim
-- tmux
-- starship
-- zshrc
-- wezterm (Windows mainly..)
-
-## Prerequisites
-
-- All those apps installed
-
-(Autoscript coming soon TM)
-
-## Caveats
-
-### Windows
-
-1. Download and install Scoop
-2. Use scoop to install Zig
-3. Install ripgrep
-4. Install
-
-`(nightly neovim from here..)`
-
-5. `scoop bucket add versions`
-6. `scoop install neovim-nightly`
-
-`(..to here)`
-
-Or..
-
-`scoop install neovim`
-
-Also clone this repo into your user folder preferably under `.config` and then symlink `nvim` into %LOCALAPPDATA% so neovim can pick up the configs.
-An example of this could be:
-```powershell
-New-Item -ItemType SymbolicLink -Path "C:\Users\<YOU>\AppData\Local\nvim" -Target "C:\Users\<YOU>\.config\nvim"
+```
+.config/
+├── .zshrc
+├── .gitignore
+├── zsh-modules/          # Modular ZSH configuration
+│   ├── exports.zsh       # Environment variables
+│   ├── functions.zsh     # Helper functions
+│   ├── plugins.zsh       # Oh My ZSH plugins
+│   ├── aliases.zsh       # Command aliases
+│   └── node.zsh          # Node.js/NVM configuration
+├── nvim/
+├── tmux/
+│   ├── tmux.conf
+│   └── plugins/          # TPM plugins
+├── starship/
+│   └── starship.toml
+├── posting/              # Posting API client
+│   └── config.yaml
+└── wezterm/              # WezTerm terminal (config pending)
 ```
 
+## 🚀 Core Components
 
+### Shell Environment (ZSH)
 
-### Linux
+- **Base**: ZSH + Oh My ZSH
+- **Prompt**: Starship cross-shell prompt with Catppuccin Frappe theme
 
-1. `.zshrc` being inside of `~/.config` means that it needs to be sourced via `.zshenv` using `ZDOTDIR=~/.config`.
+## 🛠️ Development Tools
 
-## TODO
+### Terminal & Shell
+- **Terminal Emulator**: WezTerm (configuration pending)
+- **Shell**: ZSH with Oh My ZSH framework
+- **Prompt**: Starship with Catppuccin Frappe theme
+- **Multiplexer**: Tmux with custom configuration
 
-- Separate stuff inside kickstart into separate configs
-- Add more shit to configure..
+### Command Line Tools
+- **File Management**: 
+  - `eza` - Modern replacement for ls with icons and git integration
+- **Search**: 
+  - `fzf` - Fuzzy finder for history and files
+- **API Testing**: 
+  - `posting` - TUI HTTP client
+
+## 📦 Installation
+
+### Prerequisites (Linux)
+
+1. **Core Shell**:
+   ```bash
+   # Install ZSH
+   yay -S zsh
+   
+   # Set ZDOTDIR in ~/.zshenv to use .config directory
+   echo 'ZDOTDIR=~/.config' >> ~/.zshenv
+   
+   # Install Oh My ZSH
+   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+   
+   # Install ZSH plugins
+   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+   git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+   git clone https://github.com/joshskidmore/zsh-fzf-history-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search
+   git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
+   ```
+
+2. **Essential Tools**:
+   ```bash
+   # Eza (modern ls)
+   yay -S eza
+   
+   # Starship prompt
+   yay -S starship
+   
+   # FZF
+   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+   ~/.fzf/install
+   
+   # Ripgrep (for searching)
+   sudo pacman -S ripgrep
+   ```
+
+3. **Development Tools**:
+   ```bash
+   # Neovim
+   # Install from package manager or build from source
+   
+   # Tmux
+   sudo pacman -S tmux
+   
+   # TPM (Tmux Plugin Manager)
+   git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+   ```
+
+4. **Language Runtimes**:
+   ```bash
+   # Node.js (via NVM - will be installed by zsh-nvm plugin)
+   nvm install node
+   
+   # Bun
+   curl -fsSL https://bun.sh/install | bash
+   ```
+
+## 🔧 Configuration Notes
+
+### PATH Management
+The configuration uses a `add_to_path` function that:
+- Checks if directory exists before adding
+- Prevents duplicate PATH entries
+- Supports prepending or appending to PATH
+
+## 📚 Resources
+
+- [Oh My ZSH](https://ohmyz.sh/)
+- [Starship Prompt](https://starship.rs/)
+- [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+- [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm)
+- [Catppuccin Theme](https://github.com/catppuccin/catppuccin)
+- [Eza](https://github.com/eza-community/eza)
+
