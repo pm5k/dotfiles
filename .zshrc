@@ -37,6 +37,7 @@ source "${ZSH_MOD_DIR}/zoxide.zsh"
 # 7. SHELL OPTIONS
 bindkey -v
 bindkey '^R' fzf-history-widget
+bindkey '^t' fzf-tools-widget
 setopt autocd extendedglob
 
 # 8. COMPLETION CONFIGURATION

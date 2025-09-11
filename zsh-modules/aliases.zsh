@@ -29,3 +29,4 @@ alias df="df -h"
 alias du="du -h"
 alias free="free -h"
 alias ports="netstat -tulpn"
+alias tools='tools_show'

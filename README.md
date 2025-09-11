@@ -32,6 +32,17 @@
 
 ## 🛠️ Development Tools
 
+### GitConfig
+
+```bash
+[diff]
+    external = difft
+[alias]
+    dlog = -c diff.external=difft log --ext-diff
+    dshow = -c diff.external=difft show --ext-diff
+    ddiff = -c diff.external=difft diff
+```
+
 ### Terminal & Shell
 - **Terminal Emulator**: WezTerm (configuration pending)
 - **Shell**: ZSH with Oh My ZSH framework
