@@ -19,11 +19,11 @@ fi
 source "${ZSH_MOD_DIR}/exports.zsh"
 source "${ZSH_MOD_DIR}/functions.zsh"
 source "${ZSH_MOD_DIR}/plugins.zsh"
+source "${ZSH_MOD_DIR}/widgets.zsh"
 
 # 4. PATH MODIFICATIONS
 add_to_path "$HOME/.local/bin" prepend
 add_to_path "/usr/local/go/bin"
-add_to_path "$HOME/google-cloud-sdk/bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "$BUN_INSTALL/bin"
 
@@ -32,9 +32,11 @@ source $ZSH/oh-my-zsh.sh
 
 # 6. ADDITIONAL MODULES
 source "${ZSH_MOD_DIR}/aliases.zsh"
+source "${ZSH_MOD_DIR}/zoxide.zsh"
 
 # 7. SHELL OPTIONS
 bindkey -v
+bindkey '^R' fzf-history-widget
 setopt autocd extendedglob
 
 # 8. COMPLETION CONFIGURATION
@@ -50,3 +52,4 @@ zstyle :compinstall filename '$HOME/.config/.zshrc'
 
 # 11. PROMPT
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"

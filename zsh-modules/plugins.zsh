@@ -3,6 +3,6 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-fzf-history-search
+  git
+  zsh-nvm
 )
-plugins+=(git)
-plugins+=(zsh-nvm)

@@ -4,7 +4,7 @@
 # Basic aliases
 alias cl=clear
 alias n=nvim
-alias zshrld="omz reload"
+alias zrld="omz reload"
 
 # Config editing aliases
 alias zshconf="n $HOME/.config/.zshrc"
@@ -22,6 +22,7 @@ alias tmls="tmux ls"
 alias tmkall="tmux kill-session -a"
 
 # System utilities
+alias cd="z"
 alias lt="eza -TL 2"
 alias ls="eza -loaah --git --icons --group-directories-first --time-style '+%Y-%m-%d %H:%M'"
 alias df="df -h"
