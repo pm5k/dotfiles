@@ -7,3 +7,5 @@ tmux/plugins
 !.zshrc
 !.gitignore
 !README.md
+!zsh-modules
+!posting
